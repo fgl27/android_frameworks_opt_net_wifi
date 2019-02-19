@@ -1245,24 +1245,7 @@ public class WifiStateMachine extends StateMachine {
     }
 
     WifiLinkLayerStats getWifiLinkLayerStats() {
-        if (mInterfaceName == null) {
-            loge("getWifiLinkLayerStats called without an interface");
-            return null;
-        }
-        lastLinkLayerStatsUpdate = mClock.getWallClockMillis();
-        WifiLinkLayerStats stats = mWifiNative.getWifiLinkLayerStats(mInterfaceName);
-        if (stats != null) {
-            mOnTime = stats.on_time;
-            mTxTime = stats.tx_time;
-            mRxTime = stats.rx_time;
-            mRunningBeaconCount = stats.beacon_rx;
-            mWifiInfo.updatePacketRates(stats, lastLinkLayerStatsUpdate);
-        } else {
-            long mTxPkts = mFacade.getTxPackets(mInterfaceName);
-            long mRxPkts = mFacade.getRxPackets(mInterfaceName);
-            mWifiInfo.updatePacketRates(mTxPkts, mRxPkts, lastLinkLayerStatsUpdate);
-        }
-        return stats;
+        return null;
     }
 
     private byte[] getDstMacForKeepalive(KeepalivePacketData packetData)
